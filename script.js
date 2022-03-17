@@ -36,7 +36,7 @@ function customization(pwLength) {
   if (specialChar == true) {
     count++;
   }
-  
+
   if (count == 0) {
     alert("Please choose character customization options.");
     customization();
@@ -83,7 +83,20 @@ function generatePassword(pwLength, lowerCase, upperCase, num, specialChar) {
     }
     console.log(randomPassword);
   }
-};
+  if (remainder != 0) {
+    for (var i = 0; i < remainder; i++) {
+      let x = Math.floor(Math.random() * randomPassword.length);
+      randomPassword.push(randomPassword[x]);
+      passwordShuffle();
+    }
+  } else {
+    passwordShuffle();
+  }
+}
+
+function passwordShuffle(){
+  console.log(randomPassword);
+}
 
 // Write password to the #password input
 function writePassword() {
