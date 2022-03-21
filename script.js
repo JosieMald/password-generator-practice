@@ -79,7 +79,7 @@ function generatePassword(pwLength, lowerCase, upperCase, num, specialChar) {
     for (var i = 0; i < options; i++) {
       let x = Math.floor(Math.random() * specialCharacter.length);
       randomPassword.push(specialCharacter[x]);
-      console.log(specialCharacter[x]);
+      // console.log(specialCharacter[x]);
     }
     console.log(randomPassword);
   }
@@ -94,8 +94,15 @@ function generatePassword(pwLength, lowerCase, upperCase, num, specialChar) {
   }
 }
 
-function passwordShuffle(){
-  console.log(randomPassword);
+function passwordShuffle() {
+  console.log("This is the password before the shuffle: " + randomPassword);
+  for (var i = 0; i < randomPassword.length; i++) {
+    let x = Math.floor(Math.random() * randomPassword.length);
+    [randomPassword[i], randomPassword[x]] = [randomPassword[x], randomPassword[i]];
+    console.log("-----------------------------------------------");
+  }
+  console.log("This is the password after: " + randomPassword);
+  console.log(randomPassword.length);
 }
 
 // Write password to the #password input
