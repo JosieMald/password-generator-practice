@@ -6,7 +6,7 @@ var specialCharacters = "~!@#$%^&*()-";
 var count = 0;
 var randomPassword = [];
 
-(function passwordLength() {
+function passwordLength() {
   var pwLength = prompt(
     "Choose the length of your desired password. \n Between 8 to 128 characters"
   );
@@ -17,7 +17,7 @@ var randomPassword = [];
   } else {
     customization(pwLength);
   }
-})();
+};
 
 function customization(pwLength) {
   let lowerCase = confirm("Would you like to use lower case letters?");
@@ -103,15 +103,15 @@ function passwordShuffle() {
   }
   console.log("This is the password after: " + randomPassword);
   console.log(randomPassword.length);
+  // var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+  
+  passwordText.value = randomPassword;
 }
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", passwordLength);
