@@ -6,7 +6,12 @@ var specialCharacters = "~!@#$%^&*()-";
 var count = 0;
 var randomPassword = [];
 
+// EVENT LISTENER TO START PASSWORD GENERATOR -------------------------------------
+generateBtn.addEventListener("click", passwordLength);
+
+// PASSWORD LENGTH IS DETERMINED ---------------------------------------------------
 function passwordLength() {
+  randomPassword = [];
   var pwLength = prompt(
     "Choose the length of your desired password. \n Between 8 to 128 characters"
   );
@@ -17,8 +22,9 @@ function passwordLength() {
   } else {
     customization(pwLength);
   }
-};
+}
 
+// QUESTIONS FOR PASSWORD CRITERIA --------------------------------------------
 function customization(pwLength) {
   let lowerCase = confirm("Would you like to use lower case letters?");
   if (lowerCase == true) {
@@ -41,22 +47,16 @@ function customization(pwLength) {
     alert("Please choose character customization options.");
     customization();
   } else {
-    console.log("This is the count: " + count);
     generatePassword(pwLength, lowerCase, upperCase, num, specialChar);
   }
 }
 
+// PASSWORD IS GENERATED BASED OFF USER ANSWERS ------------------------------------------
 function generatePassword(pwLength, lowerCase, upperCase, num, specialChar) {
   var letter = letters.split("");
   var specialCharacter = specialCharacters.split("");
   var options = Math.floor(pwLength / count);
-  console.log("this is the pwlength: " + pwLength);
-  console.log("This is the options: " + options);
   var remainder = pwLength % count;
-  console.log("This is the remainder: " + remainder);
-  var originalNum = count * options + remainder;
-  console.log("This is count * options + remainder: " + originalNum);
-  console.log("this is the length: " + letters.length);
   if (lowerCase == true) {
     for (var i = 0; i < options; i++) {
       let x = Math.floor(Math.random() * letter.length);
@@ -79,9 +79,7 @@ function generatePassword(pwLength, lowerCase, upperCase, num, specialChar) {
     for (var i = 0; i < options; i++) {
       let x = Math.floor(Math.random() * specialCharacter.length);
       randomPassword.push(specialCharacter[x]);
-      // console.log(specialCharacter[x]);
     }
-    console.log(randomPassword);
   }
   if (remainder != 0) {
     for (var i = 0; i < remainder; i++) {
@@ -95,23 +93,13 @@ function generatePassword(pwLength, lowerCase, upperCase, num, specialChar) {
 }
 
 function passwordShuffle() {
-  console.log("This is the password before the shuffle: " + randomPassword);
   for (var i = 0; i < randomPassword.length; i++) {
     let x = Math.floor(Math.random() * randomPassword.length);
-    [randomPassword[i], randomPassword[x]] = [randomPassword[x], randomPassword[i]];
-    console.log("-----------------------------------------------");
+    [randomPassword[i], randomPassword[x]] = [
+      randomPassword[x],
+      randomPassword[i],
+    ];
   }
-  console.log("This is the password after: " + randomPassword);
-  console.log(randomPassword.length);
-  // var password = generatePassword();
   var passwordText = document.querySelector("#password");
-  
   passwordText.value = randomPassword;
 }
-
-// Write password to the #password input
-function writePassword() {
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", passwordLength);
